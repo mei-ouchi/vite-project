@@ -1,48 +1,34 @@
-import { getImageUrl } from './components/UI/Utils.tsx'
+interface ItemProps{
+  name : string;
+  isPacked : boolean;
+}
 
-export default function Profile() {
+function Item({ name, isPacked }: ItemProps) {
   return (
-    <Card>
-      <Avatar
-        size={100}
-        person={{
-          name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2'
-        }}
-      />
-    </Card>
+    <li className="item">
+      {name} {isPacked && '✅'}
+    </li>
   );
 }
 
-interface Person {
-    name: string;
-    imageId: string;
-}
-interface AvatarProps {
-    person: Person;
-    size: number;
-}
-function Avatar({ person, size }: AvatarProps) {
+export default function PackingList() {
   return (
-    <img
-      className="avatar"
-      src={getImageUrl(person)}
-      alt={person.name}
-      width={size}
-      height={size}
-    />
+    <section>
+      <h1>Sally Ride's Packing List</h1>
+      <ul>
+        <Item
+          isPacked={true}
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+        />
+      </ul>
+    </section>
   );
 }
-
-interface CardProps {
-    children: React.ReactNode;
-}
-
-function Card({ children }: CardProps) {
-  return (
-    <div className="card">
-      {children}
-    </div>
-  );
-}
-
