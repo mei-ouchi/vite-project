@@ -1,25 +1,47 @@
-const person = {
-  name: 'Gregorio Y. Zara',
-  theme: {
-    backgroundColor: 'black',
-    color: 'pink'
-  }
-};
+import { getImageUrl } from './components/UI/Utils.tsx'
 
-export default function TodoList() {
+export default function Profile() {
   return (
-    <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
-      <img
-        className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
-        alt="Gregorio Y. Zara"
+    <Card>
+      <Avatar
+        size={100}
+        person={{
+          name: 'Katsuko Saruhashi',
+          imageId: 'YfeOqp2'
+        }}
       />
-      <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
-      </ul>
+    </Card>
+  );
+}
+
+interface Person {
+    name: string;
+    imageId: string;
+}
+interface AvatarProps {
+    person: Person;
+    size: number;
+}
+function Avatar({ person, size }: AvatarProps) {
+  return (
+    <img
+      className="avatar"
+      src={getImageUrl(person)}
+      alt={person.name}
+      width={size}
+      height={size}
+    />
+  );
+}
+
+interface CardProps {
+    children: React.ReactNode;
+}
+
+function Card({ children }: CardProps) {
+  return (
+    <div className="card">
+      {children}
     </div>
   );
 }
