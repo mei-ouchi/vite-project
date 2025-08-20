@@ -1,30 +1,19 @@
-import { useState } from 'react';
-
-export default function MyApp() {
-  const [count, setCount] = useState(0);
-
-  function handleClick() {
-    setCount(count + 1);
-  }
-
+function Profile() {
   return (
-    <div>
-      <h1>Counters that update together</h1>
-      <MyButton count={count} onClick={handleClick} />
-      <MyButton count={count} onClick={handleClick} />
-    </div>
+    <img
+      src="https://i.imgur.com/MK3eW3As.jpg"
+      alt="Katherine Johnson"
+    />
   );
 }
 
-interface MyButtonProps {
-  count: number;
-  onClick: () => void;
-}
-
-function MyButton({ count, onClick }: MyButtonProps) {
+export default function Gallery() {
   return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
+    <section>
+      <h1>Amazing scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
   );
 }
